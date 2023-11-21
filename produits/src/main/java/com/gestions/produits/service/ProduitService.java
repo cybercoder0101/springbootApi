@@ -1,17 +1,18 @@
 package com.gestions.produits.service;
 
+import com.gestions.produits.DTO.ProduitDTO;
 import com.gestions.produits.entities.Categorie;
 import com.gestions.produits.entities.Produit;
 
 import java.util.List;
 
 public interface ProduitService {
-    Produit saveProduit(Produit p);
+    ProduitDTO saveProduit(Produit p);
     Produit updateproduit(Produit p);
     void deleteProduit(Produit p);
     void deleteproduitById(Long id);
-    Produit getProduit(Long id);
-    List<Produit> getAllProduits();
+    ProduitDTO getProduit(Long id);
+    List<ProduitDTO> getAllProduits();
     List<Produit> findByNomProduit(String nom);
     List<Produit> findByNomProduitContains(String nom);
     List<Produit> findByNomPrix(String nom,Double prix);
@@ -19,5 +20,6 @@ public interface ProduitService {
     List<Produit> findByCategorieIdCat(Long id);
     List<Produit> findByOrderByNomProduitAsc();
     List<Produit> trierOrderByNomASCprixDESC();
+    public ProduitDTO convertEntiyToDto(Produit p);
 
 }

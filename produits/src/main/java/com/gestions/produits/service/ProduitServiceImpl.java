@@ -1,5 +1,6 @@
 package com.gestions.produits.service;
 
+import com.gestions.produits.DTO.ProduitDTO;
 import com.gestions.produits.entities.Categorie;
 import com.gestions.produits.entities.Produit;
 import com.gestions.produits.repositiries.ProduitRepository;
@@ -7,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProduitServiceImpl implements ProduitService{
     @Autowired
     ProduitRepository produitRepository;
-    public Produit saveProduit(Produit p) {
-        return produitRepository.save(p);
+    public ProduitDTO saveProduit(Produit p) {
+        return convertEntiyToDto(produitRepository.save(p));
     }
 
     public Produit updateproduit(Produit p) {
@@ -27,12 +30,14 @@ public class ProduitServiceImpl implements ProduitService{
          produitRepository.deleteById(id);
     }
 
-    public Produit getProduit(Long id) {
-        return produitRepository.findById(id).get();
+    public ProduitDTO getProduit(Long id) {
+        return convertEntiyToDto(produitRepository.findById(id).get());
     }
 
-    public List<Produit> getAllProduits() {
-        return produitRepository.findAll();
+    public List<ProduitDTO> getAllProduits() {
+        return produitRepository.findAll().stream()
+                .map(this::convertEntiyToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -68,5 +73,24 @@ public class ProduitServiceImpl implements ProduitService{
     @Override
     public List<Produit> trierOrderByNomASCprixDESC() {
         return produitRepository.trierOrderByNomASCprixDES();
+    }
+
+    @Override
+    public ProduitDTO convertEntiyToDto(Produit p) {
+//        classique
+//        ProduitDTO produitDTO=new ProduitDTO();
+//        produitDTO.setIdProduit(p.getIdProduit());
+//        produitDTO.setNomProduit(p.getNomProduit());
+//        produitDTO.setPrixProduit(p.getPrixProduit());
+//        produitDTO.setCategorie(p.getCategorie());
+//
+//        return produitDTO;
+        return ProduitDTO.builder()
+                .idProduit(p.getIdProduit())
+                .nomProduit(p.getNomProduit())
+                .prixProduit(p.getPrixProduit())
+                .categorie(p.getCategorie())
+                .build();
+
     }
 }
