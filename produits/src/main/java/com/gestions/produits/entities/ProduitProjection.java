@@ -7,4 +7,6 @@ import org.springframework.data.rest.core.config.Projection;
 public interface ProduitProjection {
     public String getNomProduit();
     public Double getPrixProduit();
+    public Categorie getCategorie();
 }
+

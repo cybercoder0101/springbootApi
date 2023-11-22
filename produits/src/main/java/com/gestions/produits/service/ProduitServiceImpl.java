@@ -89,6 +89,7 @@ public class ProduitServiceImpl implements ProduitService{
                 .idProduit(p.getIdProduit())
                 .nomProduit(p.getNomProduit())
                 .prixProduit(p.getPrixProduit())
+                .dateCreation(p.getDateCreation())
                 .categorie(p.getCategorie())
                 .build();
 

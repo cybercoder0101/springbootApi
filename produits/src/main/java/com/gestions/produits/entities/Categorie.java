@@ -26,6 +26,7 @@ public class Categorie {
 
 
 
+
     public Long getIdCat() {
         return idCat;
     }

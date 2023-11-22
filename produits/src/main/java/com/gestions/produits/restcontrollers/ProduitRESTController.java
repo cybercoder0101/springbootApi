@@ -1,5 +1,6 @@
 package com.gestions.produits.restcontrollers;
 
+import com.gestions.produits.DTO.ProduitDTO;
 import com.gestions.produits.entities.Produit;
 import com.gestions.produits.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +16,16 @@ public class ProduitRESTController {
     ProduitService produitService;
 
     @RequestMapping(method = RequestMethod.GET)
-    List<Produit> getAllProduits(){
+    List<ProduitDTO> getAllProduits(){
         return produitService.getAllProduits();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Produit getProduitById(@PathVariable("id") Long id){
+    public ProduitDTO getProduitById(@PathVariable("id") Long id){
         return produitService.getProduit(id);
     }
     @RequestMapping(method = RequestMethod.POST)
-    public Produit createProduit(@RequestBody Produit p){
+    public ProduitDTO createProduit(@RequestBody Produit p){
         return produitService.saveProduit(p);
     }
 
