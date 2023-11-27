@@ -7,8 +7,8 @@ import com.gestions.produits.entities.Produit;
 import java.util.List;
 
 public interface ProduitService {
-    ProduitDTO saveProduit(Produit p);
-    Produit updateproduit(Produit p);
+    ProduitDTO saveProduit(ProduitDTO p);
+    ProduitDTO updateproduit(ProduitDTO p);
     void deleteProduit(Produit p);
     void deleteproduitById(Long id);
     ProduitDTO getProduit(Long id);
@@ -21,5 +21,7 @@ public interface ProduitService {
     List<Produit> findByOrderByNomProduitAsc();
     List<Produit> trierOrderByNomASCprixDESC();
     public ProduitDTO convertEntiyToDto(Produit p);
+
+    public Produit converDtoToEntity(ProduitDTO produitDTO);
 
 }

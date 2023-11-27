@@ -25,13 +25,13 @@ public class ProduitRESTController {
         return produitService.getProduit(id);
     }
     @RequestMapping(method = RequestMethod.POST)
-    public ProduitDTO createProduit(@RequestBody Produit p){
-        return produitService.saveProduit(p);
+    public ProduitDTO createProduit(@RequestBody ProduitDTO produitDTO){
+        return produitService.saveProduit(produitDTO);
     }
 
     @RequestMapping(method=RequestMethod.PUT)
-    public Produit updateProduit(@RequestBody Produit p){
-        return produitService.updateproduit(p);
+    public ProduitDTO updateProduit(@RequestBody ProduitDTO produitDTO){
+        return produitService.updateproduit(produitDTO);
     }
 
     @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
