@@ -18,10 +18,14 @@
             <td>{{ p.prixProduit }}</td>
             <td>{{ p.dateCreation | date : "longDate" }}</td>
             <td>
-              <button type="button" class="btn btn-danger">Supprimer</button>
+              <button type="button" class="btn btn-danger d-none d-md-block">
+                Supprimer
+              </button>
             </td>
             <td>
-              <button type="button" class="btn btn-success">Modifier</button>
+              <button type="button" class="btn btn-success d-none d-md-block">
+                Modifier
+              </button>
             </td>
           </tr>
 
