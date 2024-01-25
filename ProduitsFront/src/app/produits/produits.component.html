@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-hover table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Date de création</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of produits; track $index) {
+          <tr>
+            <td>{{ p.idProduit }}</td>
+            <td>{{ p.nomProduit }}</td>
+            <td>{{ p.prixProduit }}</td>
+            <td>{{ p.dateCreation | date : "longDate" }}</td>
+            <td>
+              <button type="button" class="btn btn-danger">Supprimer</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-success">Modifier</button>
+            </td>
+          </tr>
+
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
