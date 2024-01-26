@@ -16,14 +16,22 @@
             <td>{{ p.idProduit }}</td>
             <td>{{ p.nomProduit }}</td>
             <td>{{ p.prixProduit }}</td>
-            <td>{{ p.dateCreation | date : "longDate" }}</td>
+            <td>{{ p.dateCreation | date : "dd-MM-yyyy" }}</td>
             <td>
-              <button type="button" class="btn btn-danger d-none d-md-block">
+              <button
+                type="button"
+                class="btn btn-danger d-none d-md-block"
+                (click)="supprimerProduit(p)"
+              >
                 Supprimer
               </button>
             </td>
             <td>
-              <button type="button" class="btn btn-success d-none d-md-block">
+              <button
+                type="button"
+                class="btn btn-success d-none d-md-block"
+                (click)="goToProduit(p)"
+              >
                 Modifier
               </button>
             </td>

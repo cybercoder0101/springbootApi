@@ -8,6 +8,7 @@ export const routes: Routes = [
         (module) => module.ProduitsComponent
       ),
   },
+
   {
     path: 'add-produit',
     loadComponent: () =>
@@ -15,6 +16,15 @@ export const routes: Routes = [
         (module) => module.AddProduitComponent
       ),
   },
+
+  {
+    path: 'updateProduit/:id',
+    loadComponent: () =>
+      import('./update-produit/update-produit.component').then(
+        (module) => module.UpdateProduitComponent
+      ),
+  },
+
   {
     path: '',
     redirectTo: 'produits',

@@ -1,0 +1,54 @@
+<div
+  class="card text-center w-50 mb-3 col-sm-2 col-md-2 col-lg-2"
+  data-bs-theme="dark"
+  style="width: 18rem; margin: auto"
+>
+  <div class="card-body">
+    <h5 class="card-title">Modification du produit</h5>
+    <form action="">
+      <div class="m-3">
+        <label class="text-info-emphasis">ID Produit</label>
+        <input
+          type="text"
+          [(ngModel)]="this.currentProduit.idProduit"
+          name="idProduit"
+          class="form-control"
+        />
+      </div>
+      <div class="m-3">
+        <label class="text-info-emphasis">Nom Produit</label>
+        <input
+          type="text"
+          [(ngModel)]="this.currentProduit.nomProduit"
+          name="nomProduit"
+          class="form-control"
+        />
+      </div>
+      <div class="m-3">
+        <label class="text-info-emphasis">Prix Produit</label>
+        <input
+          type="number"
+          [(ngModel)]="this.currentProduit.prixProduit"
+          name="prixProduit"
+          class="form-control"
+        />
+      </div>
+      <div class="m-3">
+        <label class="text-info-emphasis">Date création</label>
+        <input
+          type="date"
+          [ngModel]="this.currentProduit.dateCreation | date : 'yyyy-MM-dd'"
+          (ngModelChange)="this.currentProduit.dateCreation = $event"
+          name="dateCreation"
+          class="form-control"
+        />
+      </div>
+
+      <a type="submit" (click)="updateProduit()" class="btn btn-primary m-4"
+        >Modifier</a
+      >
+
+      <a href="#" class="btn btn-danger m-4">Annuler</a>
+    </form>
+  </div>
+</div>
