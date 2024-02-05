@@ -33,17 +33,28 @@
           class="form-control"
         />
       </div>
+
       <div class="m-3">
-        <label class="text-info-emphasis">Date création</label>
-        <input
-          type="date"
-          [(ngModel)]="newProduit.dateCreation"
-          name="dateCreation"
+        <label class="text-info-emphasis">Catégorie</label>
+        <select
+          name="idCat"
+          id="idCat"
+          type="text"
+          [(ngModel)]="newIdCat"
+          name="idCat"
           class="form-control"
-        />
+        >
+          @for (cat of Categories; track $index) {
+          <option [value]="cat.idCat">
+            {{ cat.nomCat }}
+          </option>
+          }
+        </select>
       </div>
 
-      <a (click)="addProduit()" class="btn btn-primary m-4">Ajouter</a>
+      <a (click)="addProduit(); retourHome()" class="btn btn-primary m-4"
+        >Ajouter</a
+      >
 
       <a (click)="retourHome()" class="btn btn-danger m-4">Annuler</a>
       @if (newProduit.prixProduit != undefined &&
