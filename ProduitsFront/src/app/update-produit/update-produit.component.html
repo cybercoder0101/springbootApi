@@ -44,12 +44,26 @@
           class="form-control"
         />
       </div>
+      <!-- <div class="m-3">
+        <label class="text-info-emphasis">Catégorie</label>
+        <select
+          name="idCat"
+          id="idCat"
+          type="text"
+          [(ngModel)]="catID"
+          class="form-control"
+        >
+          @for (cat of Categories; track $index) {
+          <option [value]="cat.idCat">{{ cat.nomCat }}</option>
+          }
+        </select>
+      </div> -->
 
       <a type="submit" (click)="updateProduit()" class="btn btn-primary m-4"
         >Modifier</a
       >
 
-      <a href="#" class="btn btn-danger m-4">Annuler</a>
+      <a (click)="retourHome()" class="btn btn-danger m-4">Annuler</a>
     </form>
   </div>
 </div>

@@ -33,8 +33,17 @@
           class="form-control"
         />
       </div>
-
       <div class="m-3">
+        <label class="text-info-emphasis">Date création</label>
+        <input
+          type="date"
+          [(ngModel)]="newProduit.dateCreation"
+          name="dateCreation"
+          class="form-control"
+        />
+      </div>
+
+      <!-- <div class="m-3">
         <label class="text-info-emphasis">Catégorie</label>
         <select
           name="idCat"
@@ -50,7 +59,7 @@
           </option>
           }
         </select>
-      </div>
+      </div> -->
 
       <a (click)="addProduit(); retourHome()" class="btn btn-primary m-4"
         >Ajouter</a
