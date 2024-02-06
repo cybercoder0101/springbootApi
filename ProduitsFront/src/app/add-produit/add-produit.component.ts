@@ -26,12 +26,12 @@ export class AddProduitComponent implements OnInit {
   constructor(private produitService: ProduitService, private route: Router) {}
 
   ngOnInit(): void {
-    this.Categories = this.produitService.listerCategories();
+    // this.Categories = this.produitService.listerCategories();
   }
 
   addProduit() {
-    this.newCat = this.produitService.consulterCategorie(this.newIdCat);
-    this.newProduit.categorie = this.newCat;
+    // this.newCat = this.produitService.consulterCategorie(this.newIdCat);
+    // this.newProduit.categorie = this.newCat;
     this.produitService.ajouterProduit(this.newProduit);
     this.message = this.newProduit.nomProduit + ' ajouté avec succes';
   }

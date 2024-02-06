@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Produit } from '../model/produit.model';
 import { Categorie } from '../model/categorie.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProduitService {
   produits: Produit[];
-  categories: Categorie[];
+  /* categories: Categorie[]; */
+  apiURL: string = 'http://localhost:8080/produits/api';
 
-  constructor() {
-    this.categories = [
-      { idCat: 1, nomCat: 'PC' },
-      { idCat: 2, nomCat: 'Imprimante' },
-    ];
+  constructor(private http: HttpClient) {
+    // this.categories = [
+    //   { idCat: 1, nomCat: 'PC' },
+    //   { idCat: 2, nomCat: 'Imprimante' },
+    // ];
     this.produits = [
       {
         idProduit: 1,
@@ -64,11 +66,11 @@ export class ProduitService {
   trierProduits() {
     this.produits = this.produits.sort((n1, n2) => n1.idProduit - n2.idProduit);
   }
-  listerCategories(): Categorie[] {
+  /*  listerCategories(): Categorie[] {
     return this.categories;
   }
 
   consulterCategorie(id: number): Categorie {
     return this.listerCategories().find((c) => c.idCat == id)!;
-  }
+  } */
 }
