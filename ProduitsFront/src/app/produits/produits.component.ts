@@ -18,13 +18,21 @@ export class ProduitsComponent implements OnInit {
   constructor(private produitService: ProduitService, private router: Router) {}
 
   ngOnInit(): void {
-    this.produits = this.produitService.listeproduits();
+    this.chargerProduit();
+  }
+
+  chargerProduit() {
+    this.produitService.listeproduits().subscribe((prods) => {
+      this.produits = prods;
+    });
   }
 
   supprimerProduit(p: Produit) {
     let conf = confirm('Etes-vous sur de la suppression');
     if (conf) {
-      this.produitService.supprimerProduit(p);
+      this.produitService.supprimerProduit(p.idProduit).subscribe(() => {
+        this.chargerProduit();
+      });
     }
   }
 

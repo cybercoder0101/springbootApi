@@ -6,7 +6,7 @@
   <div class="card-body">
     <h5 class="card-title">Ajouter un produit</h5>
     <form action="">
-      <div class="m-3">
+      <div hidden class="m-3">
         <label class="text-info-emphasis">ID Produit</label>
         <input
           type="text"
@@ -61,9 +61,7 @@
         </select>
       </div> -->
 
-      <a (click)="addProduit(); retourHome()" class="btn btn-primary m-4"
-        >Ajouter</a
-      >
+      <a (click)="addProduit()" class="btn btn-primary m-4">Ajouter</a>
 
       <a (click)="retourHome()" class="btn btn-danger m-4">Annuler</a>
       @if (newProduit.prixProduit != undefined &&

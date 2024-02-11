@@ -24,16 +24,19 @@ export class UpdateProduitComponent implements OnInit {
 
   ngOnInit(): void {
     //this.Categories = this.produitservive.listerCategories();
-    this.currentProduit = this.produitservive.consulterProduit(
-      this.activedRoute.snapshot.params['id']
-    );
+    this.produitservive
+      .consulterProduit(this.activedRoute.snapshot.params['id'])
+      .subscribe((prod) => {
+        this.currentProduit = prod;
+      });
     // this.catID = this.currentProduit.categorie.idCat;
   }
 
   updateProduit() {
     //this.currentProduit.categorie = this.produitservive.consulterCategorie(this.catID);
-    this.produitservive.updateProduit(this.currentProduit);
-    this.retourHome();
+    this.produitservive.updateProduit(this.currentProduit).subscribe((prod) => {
+      this.retourHome();
+    });
   }
 
   retourHome() {

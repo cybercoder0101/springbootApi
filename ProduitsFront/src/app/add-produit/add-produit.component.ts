@@ -32,8 +32,9 @@ export class AddProduitComponent implements OnInit {
   addProduit() {
     // this.newCat = this.produitService.consulterCategorie(this.newIdCat);
     // this.newProduit.categorie = this.newCat;
-    this.produitService.ajouterProduit(this.newProduit);
-    this.message = this.newProduit.nomProduit + ' ajouté avec succes';
+    this.produitService.ajouterProduit(this.newProduit).subscribe((prod) => {
+      this.retourHome();
+    });
   }
 
   retourHome() {
