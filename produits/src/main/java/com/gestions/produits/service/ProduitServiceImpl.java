@@ -84,21 +84,7 @@ public class ProduitServiceImpl implements ProduitService{
     public ProduitDTO convertEntiyToDto(Produit p) {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
         ProduitDTO produitDTO = modelMapper.map(p,ProduitDTO.class);
-//        classique
-//        ProduitDTO produitDTO=new ProduitDTO();
-//        produitDTO.setIdProduit(p.getIdProduit());
-//        produitDTO.setNomProduit(p.getNomProduit());
-//        produitDTO.setPrixProduit(p.getPrixProduit());
-//        produitDTO.setCategorie(p.getCategorie());
 //
-//        return produitDTO;
-//        return ProduitDTO.builder()
-//                .idProduit(p.getIdProduit())
-//                .nomProduit(p.getNomProduit())
-//                .prixProduit(p.getPrixProduit())
-//                .dateCreation(p.getDateCreation())
-//                .categorie(p.getCategorie())
-//                .build();
         return produitDTO;
 
     }
@@ -108,12 +94,6 @@ public class ProduitServiceImpl implements ProduitService{
         Produit p=new Produit();
         p=modelMapper.map(produitDTO,Produit.class);
         return p;
-//        Produit p=new Produit();
-//        p.setIdProduit(produitDTO.getIdProduit());
-//        p.setNomProduit(produitDTO.getNomProduit());
-//        p.setPrixProduit(produitDTO.getPrixProduit());
-//        p.setDateCreation(produitDTO.getDateCreation());
-//        p.setCategorie(produitDTO.getCategorie());
-//        return p;
+//
     }
 }
