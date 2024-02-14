@@ -44,20 +44,20 @@
           class="form-control"
         />
       </div>
-      <!-- <div class="m-3">
+      <div class="m-3">
         <label class="text-info-emphasis">Catégorie</label>
         <select
           name="idCat"
           id="idCat"
           type="text"
-          [(ngModel)]="catID"
+          [(ngModel)]="updateCatId"
           class="form-control"
         >
           @for (cat of Categories; track $index) {
           <option [value]="cat.idCat">{{ cat.nomCat }}</option>
           }
         </select>
-      </div> -->
+      </div>
 
       <a type="submit" (click)="updateProduit()" class="btn btn-primary m-4"
         >Modifier</a
