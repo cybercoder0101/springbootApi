@@ -24,6 +24,13 @@ export const routes: Routes = [
         (module) => module.UpdateProduitComponent
       ),
   },
+  {
+    path: 'rechercheParcategorie',
+    loadComponent: () =>
+      import(
+        './recherche-par-categorie/recherche-par-categorie.component'
+      ).then((module) => module.RechercheParCategorieComponent),
+  },
 
   {
     path: '',

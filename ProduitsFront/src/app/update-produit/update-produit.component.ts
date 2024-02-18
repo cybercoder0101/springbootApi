@@ -26,7 +26,7 @@ export class UpdateProduitComponent implements OnInit {
 
   ngOnInit(): void {
     this.produitservice.listerCategories().subscribe((cats) => {
-      this.Categories = cats;
+      this.Categories = cats._embedded.categories;
     });
     this.produitservice
       .consulterProduit(this.activedRoute.snapshot.params['id'])

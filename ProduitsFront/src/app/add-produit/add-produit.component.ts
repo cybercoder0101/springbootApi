@@ -27,7 +27,7 @@ export class AddProduitComponent implements OnInit {
 
   ngOnInit(): void {
     this.produitService.listerCategories().subscribe((cats) => {
-      this.Categories = cats;
+      this.Categories = cats._embedded.categories;
     });
   }
 

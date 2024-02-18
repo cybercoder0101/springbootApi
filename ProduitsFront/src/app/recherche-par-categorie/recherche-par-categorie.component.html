@@ -1,0 +1,42 @@
+<div class="col-11 m-3">
+  <label><h3>Catégories</h3></label>
+  <select
+    class="form-control"
+    id="idCat"
+    name="idCat"
+    [(ngModel)]="iDcatSelected"
+    (change)="RechercheBycat()"
+  >
+    @for (item of cats; track $index) {
+    <option value="{{ item.idCat }}">{{ item.nomCat }}</option>
+    }
+  </select>
+
+  <div class="container mt-4">
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <table class="table table-hover table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Date de création</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            @for(p of Listeproduits;track $index){
+            <tr>
+              <td>{{ p.idProduit }}</td>
+              <td>{{ p.nomProduit }}</td>
+              <td>{{ p.prixProduit }}</td>
+              <td>{{ p.dateCreation | date : "dd-MM-yyyy" }}</td>
+            </tr>
+
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

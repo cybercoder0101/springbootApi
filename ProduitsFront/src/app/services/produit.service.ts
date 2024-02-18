@@ -4,6 +4,7 @@ import { Categorie } from '../model/categorie.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiURL } from '../config';
+import { CategorieWrapper } from '../model/categorieWrapper.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -14,6 +15,7 @@ const httpOptions = {
 })
 export class ProduitService {
   produits!: Produit[];
+  apiURLCat: string = 'http://localhost:8080/produits/cat';
 
   /* categories: Categorie[]; */
 
@@ -35,18 +37,26 @@ export class ProduitService {
     const url = `${apiURL}/${id}`;
     return this.http.get<Produit>(url);
   }
+
   updateProduit(p: Produit): Observable<Produit> {
     return this.http.put<Produit>(apiURL, p, httpOptions);
   }
+
   trierProduits() {
     this.produits = this.produits.sort((n1, n2) => n1.idProduit - n2.idProduit);
   }
-  listerCategories(): Observable<Categorie[]> {
-    return this.http.get<Categorie[]>(apiURL + '/cat');
+
+  listerCategories(): Observable<CategorieWrapper> {
+    return this.http.get<CategorieWrapper>(this.apiURLCat);
   }
 
   consulterCategorie(id: number) {
     const url = `${apiURL}+"/cat/"+${id}`;
     return this.http.get<Categorie>(url);
+  }
+
+  RechercheParCategorie(idCat: number): Observable<Produit[]> {
+    const url = `${apiURL}/prodscat/${idCat}`;
+    return this.http.get<Produit[]>(url);
   }
 }
