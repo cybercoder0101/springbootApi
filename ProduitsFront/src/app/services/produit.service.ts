@@ -63,4 +63,13 @@ export class ProduitService {
     const url = `${apiURL}/prodByNom/${nom}`;
     return this.http.get<Produit[]>(url);
   }
+
+  ajouterCategorie(cat: Categorie): Observable<Categorie> {
+    return this.http.post<Categorie>(this.apiURLCat, cat, httpOptions);
+  }
+
+  supprimerCategorie(id: number) {
+    const url = `${this.apiURLCat}/${id}`;
+    return this.http.delete<Categorie>(url, httpOptions);
+  }
 }

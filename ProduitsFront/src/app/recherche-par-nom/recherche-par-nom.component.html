@@ -1,1 +1,49 @@
-<p>recherche-par-nom works!</p>
+<div class="col-10">
+  <form class="form-inline">
+    <div class="input-group m-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="nom du produit"
+        [(ngModel)]="nomProd"
+        id="nomProd"
+        name="nomProd"
+      />
+      <button
+        class="btn btn-outline-secondary"
+        type="submit"
+        (click)="rechercheNom()"
+      >
+        Rechercher
+      </button>
+    </div>
+  </form>
+
+  <div class="container mt-4">
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <table class="table table-hover table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Date de création</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            @for(p of Listeprods;track $index){
+            <tr>
+              <td>{{ p.idProduit }}</td>
+              <td>{{ p.nomProduit }}</td>
+              <td>{{ p.prixProduit }}</td>
+              <td>{{ p.dateCreation | date : "dd-MM-yyyy" }}</td>
+            </tr>
+
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

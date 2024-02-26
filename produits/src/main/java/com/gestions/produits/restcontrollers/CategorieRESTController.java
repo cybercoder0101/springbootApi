@@ -22,4 +22,9 @@ public class CategorieRESTController {
     public Categorie getCategorieById(@PathVariable("id")Long id){
         return categorieRepository.findById(id).get();
     }
+
+    @RequestMapping(value = "/{id}", method=RequestMethod.DELETE)
+    public void deleteCategorieById(@PathVariable("id")Long id){
+        categorieRepository.deleteById(id);
+    }
 }

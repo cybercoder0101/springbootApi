@@ -1,3 +1,8 @@
+<app-details-categorie
+  [categorie]="updatedCat"
+  [ajout]="ajout"
+  (categorieUp)="categorieUp($event)"
+></app-details-categorie>
 <div class="container col-12">
   <div class="card shadow mb-4">
     <div class="card-body">
@@ -6,24 +11,18 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Nom</th>
-            <th scope="col">Prix</th>
-            <th scope="col">Date de création</th>
-            <th>Catégorie</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          @for (p of produits; track $index) {
+          @for (cat of ListesCats; track $index) {
           <tr>
-            <td>{{ p.idProduit }}</td>
-            <td>{{ p.nomProduit }}</td>
-            <td>{{ p.prixProduit }}</td>
-            <td>{{ p.dateCreation | date : "dd-MM-yyyy" }}</td>
-            <td>{{ p.categorie!.nomCat }}</td>
+            <td>{{ cat.idCat }}</td>
+            <td>{{ cat.nomCat }}</td>
             <td>
               <button
                 type="button"
+                (click)="supprimerCat(cat)"
                 class="btn btn-danger d-none d-md-block"
-                (click)="supprimerProduit(p)"
               >
                 Supprimer
               </button>
@@ -31,8 +30,8 @@
             <td>
               <button
                 type="button"
+                (click)="categorieUpdate(cat)"
                 class="btn btn-success d-none d-md-block"
-                (click)="goToProduit(p)"
               >
                 Modifier
               </button>

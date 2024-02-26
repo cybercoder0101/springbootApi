@@ -38,6 +38,25 @@ export const routes: Routes = [
         (module) => module.RechercheParNomComponent
       ),
   },
+  {
+    path: 'ListeCategories',
+    loadComponent: () =>
+      import('./liste-categorie/liste-categorie.component').then(
+        (module) => module.ListeCategorieComponent
+      ),
+  },
+  {
+    path: 'detailCategorie',
+    loadComponent: () =>
+      import('./details-categorie/details-categorie.component').then(
+        (module) => module.DetailsCategorieComponent
+      ),
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./login/login.component').then((module) => module.LoginComponent),
+  },
 
   {
     path: '',
