@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import {
   NgbAccordionModule,
   NgbCollapseModule,
@@ -25,7 +25,19 @@ import { AuthService } from './services/auth.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isMenuCollapsed = true;
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    let isLoggedIn: string | null;
+    let loggedUser: string | null;
+    isLoggedIn = localStorage.getItem('isLoggedIn');
+    loggedUser = localStorage.getItem('loggedUser');
+    if (isLoggedIn != 'true' || !loggedUser) {
+      this.router.navigate(['/login']);
+    } else {
+      this.authService.setLoggedUserFromLocalStorage(loggedUser);
+    }
+  }
 }

@@ -11,10 +11,19 @@ export class AuthService {
     { username: 'salif', password: '123', roles: ['USER'] },
   ];
   public loggedUser!: string;
-  public isLoggendIn: boolean = false;
+  public isLoggedIn: boolean = false;
   public roles!: string[];
 
   constructor(private router: Router) {}
+
+  logout() {
+    this.isLoggedIn = false;
+    this.loggedUser = undefined!;
+    this.roles = undefined!;
+    localStorage.removeItem('loggedUser');
+    localStorage.setItem('isloggedIn', String(this.isLoggedIn));
+    this.router.navigate(['/login']);
+  }
 
   SignIn(user: User): Boolean {
     let validUser: Boolean = false;
@@ -25,12 +34,31 @@ export class AuthService {
       ) {
         validUser = true;
         this.loggedUser = curUser.username;
-        this.isLoggendIn = true;
+        this.isLoggedIn = true;
         this.roles = curUser.roles;
         localStorage.setItem('loggedUser', this.loggedUser);
-        localStorage.setItem('isLoggedIn', String(this.isLoggendIn));
+        localStorage.setItem('isLoggedIn', String(this.isLoggedIn));
       }
     });
     return validUser;
+  }
+
+  isAdmin(): Boolean {
+    if (!this.roles) {
+      return false;
+    } else {
+      return this.roles.indexOf('ADMIN') > -1;
+    }
+  }
+  setLoggedUserFromLocalStorage(pw: string) {
+    this.loggedUser = pw;
+    this.isLoggedIn = true;
+    this.getUserRoles(pw);
+  }
+
+  getUserRoles(username: string) {
+    this.users.forEach((curUser) => {
+      if ((curUser.username = username)) this.roles = curUser.roles;
+    });
   }
 }

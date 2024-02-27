@@ -29,13 +29,13 @@
             Produits
           </a>
           <div ngbDropdownMenu>
-            <a
+            @if (authService.isAdmin()) {<a
               class="text-info-emphasis"
               role="button"
               routerLink="add-produit"
               ngbDropdownItem
               >Ajouter</a
-            >
+            >}
 
             <a
               class="text-info-emphasis"
@@ -52,33 +52,50 @@
               ngbDropdownItem
               >Recherche Par nom</a
             >
+            @if (authService.isAdmin()) {
             <a
               class="text-info-emphasis"
               role="button"
               routerLink="ListeCategories"
               ngbDropdownItem
               >Gestion des catégories</a
-            >
+            >}
           </div>
         </li>
+
         <li class="nav-item ml-auto" ngbDropdown>
           <a
             class="nav-link text-info-emphasis"
             role="button"
             ngbDropdownToggle
           >
-            [username]
+            Compte
           </a>
+
           <div ngbDropdownMenu>
-            <a class="text-info-emphasis" role="button" ngbDropdownItem
-              >Login</a
+            @if (!authService.isLoggedIn) {
+            <a
+              class="text-info-emphasis"
+              role="button"
+              routerLink="login"
+              ngbDropdownItem
+              >Se connecter</a
             >
-            <a class="text-info-emphasis" role="button" ngbDropdownItem
-              >Logout</a
-            >
+            } @if (authService.isLoggedIn) {<a
+              class="text-info-emphasis"
+              (click)="authService.logout()"
+              role="button"
+              ngbDropdownItem
+              >Se déconnecter</a
+            >}
           </div>
         </li>
       </ul>
+      @if(authService.loggedUser!=null){
+      <div class="text-info-emphasis">
+        {{ authService.loggedUser | uppercase }}
+      </div>
+      }
     </div>
   </div>
 </nav>

@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';
+import { Routes, CanActivateFn } from '@angular/router';
+import { produitGuard } from './guards/produit.guard';
 
 export const routes: Routes = [
   {
@@ -15,6 +16,7 @@ export const routes: Routes = [
       import('./add-produit/add-produit.component').then(
         (module) => module.AddProduitComponent
       ),
+    canActivate: [produitGuard],
   },
 
   {

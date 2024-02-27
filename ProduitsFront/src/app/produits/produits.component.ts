@@ -4,6 +4,7 @@ import { Produit } from '../model/produit.model';
 import { ProduitService } from '../services/produit.service';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-produits',
@@ -15,7 +16,11 @@ import { Router } from '@angular/router';
 export class ProduitsComponent implements OnInit {
   show = false;
   produits?: Produit[];
-  constructor(private produitService: ProduitService, private router: Router) {}
+  constructor(
+    private produitService: ProduitService,
+    private router: Router,
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.chargerProduit();
