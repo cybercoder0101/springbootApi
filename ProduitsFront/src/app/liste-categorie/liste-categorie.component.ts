@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ProduitService } from '../services/produit.service';
 import { Categorie } from '../model/categorie.model';
 import { DetailsCategorieComponent } from '../details-categorie/details-categorie.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-liste-categorie',
   standalone: true,
-  imports: [DetailsCategorieComponent],
+  imports: [DetailsCategorieComponent, FormsModule],
   templateUrl: './liste-categorie.component.html',
   styleUrl: './liste-categorie.component.css',
 })

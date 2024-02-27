@@ -1,22 +1,17 @@
-import { Component } from "@angular/core";
+import { RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
+import { ProduitsComponent } from '../produits/produits.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: "app-loader",
-    template: `
-    <div class="preloader-wrapper big active">
-      <div class="spinner-layer spinner-green-only">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div>
-        <div class="gap-patch">
-          <div class="circle"></div>
-        </div>
-        <div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
+  selector: 'app-loader',
+  template: `<div class="alert alert-danger col-8" role="alert">
+    <h2>Erreur 404</h2>
+    <div>
+      <a routerLink="produits">Menu</a>
     </div>
-  `,
-    standalone: true,
+  </div>`,
+  standalone: true,
+  imports: [RouterLink, ProduitsComponent, CommonModule],
 })
 export class LoaderComponent {}
