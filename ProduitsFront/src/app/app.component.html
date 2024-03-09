@@ -92,8 +92,10 @@
         </li>
       </ul>
       @if(authService.loggedUser!=null){
-      <div class="text-info-emphasis">
-        {{ authService.loggedUser | uppercase }}
+      <div class="text-info-emphasis" id="right">
+        <fa-icon [icon]="facoff"></fa-icon>
+        <i class="fa-sharp fa-solid fa-user"></i>
+        {{ authService.loggedUser  }}
       </div>
       }
     </div>

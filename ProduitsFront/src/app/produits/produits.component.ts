@@ -5,6 +5,8 @@ import { ProduitService } from '../services/produit.service';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import {LoaderComponent} from "../loader/loader.component";
+import {LoginComponent} from "../login/login.component";
 
 @Component({
   selector: 'app-produits',
