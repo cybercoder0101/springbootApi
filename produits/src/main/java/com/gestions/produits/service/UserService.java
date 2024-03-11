@@ -5,7 +5,7 @@ import com.gestions.produits.entities.User;
 
 public interface UserService  {
     User saveUser(User user);
-    User findUserByUserName(String username);
+    User findUserByUsername(String username);
     Role addRole(Role role);
     User addRoleToUser(String username, String rolename);
 }
