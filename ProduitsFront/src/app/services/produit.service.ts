@@ -22,24 +22,27 @@ export class ProduitService {
   constructor(private http: HttpClient) {}
 
   listeproduits(): Observable<Produit[]> {
-    return this.http.get<Produit[]>(apiURL);
+    const url =apiURL+"/all";
+    return this.http.get<Produit[]>(url);
   }
   ajouterProduit(prod: Produit) {
-    return this.http.post<Produit>(apiURL, prod, httpOptions);
+    const url= apiURL+"/addprod"
+    return this.http.post<Produit>(url, prod, httpOptions);
   }
 
   supprimerProduit(id: number) {
-    const url = `${apiURL}/${id}`;
+    const url = `${apiURL}+"/delprod"+/${id}`;
     return this.http.delete(url, httpOptions);
   }
 
   consulterProduit(id: number) {
-    const url = `${apiURL}/${id}`;
+    const url = `${apiURL}+"getById"+/${id}`;
     return this.http.get<Produit>(url);
   }
 
   updateProduit(p: Produit): Observable<Produit> {
-    return this.http.put<Produit>(apiURL, p, httpOptions);
+    const url=apiURL+"/updateprod";
+    return this.http.put<Produit>(url, p, httpOptions);
   }
 
   trierProduits() {

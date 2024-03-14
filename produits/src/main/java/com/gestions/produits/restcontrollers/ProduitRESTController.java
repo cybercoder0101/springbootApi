@@ -15,26 +15,29 @@ public class ProduitRESTController {
     @Autowired
     ProduitService produitService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path = "all",method = RequestMethod.GET)
     List<ProduitDTO> getAllProduits(){
         return produitService.getAllProduits();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)
     public ProduitDTO getProduitById(@PathVariable("id") Long id){
         return produitService.getProduit(id);
     }
-    @RequestMapping(method = RequestMethod.POST)
+
+
+    //@RequestMapping(method = RequestMethod.POST)
+    @PostMapping("/addprod")
     public ProduitDTO createProduit(@RequestBody ProduitDTO produitDTO){
         return produitService.saveProduit(produitDTO);
     }
 
-    @RequestMapping(method=RequestMethod.PUT)
+    @RequestMapping(path = "/updateprod",method=RequestMethod.PUT)
     public ProduitDTO updateProduit(@RequestBody ProduitDTO produitDTO){
         return produitService.updateproduit(produitDTO);
     }
 
-    @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value="/delprod/{id}",method = RequestMethod.DELETE)
     public void deleteProduit(@PathVariable("id") Long id)
     {
         produitService.deleteproduitById(id);
