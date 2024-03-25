@@ -1,10 +1,7 @@
-
-
 /* Styles pour les grands écrans */
-@media screen and (min-width: 1200px) {
-
-  #right{
-    margin-left: 1430px;
-
+@media screen and (min-width: 1000px) {
+  #right {
+    position: absolute;
+    right: 20px;
   }
 }

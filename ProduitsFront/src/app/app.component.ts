@@ -9,9 +9,8 @@ import {
 import { ProduitsComponent } from './produits/produits.component';
 import { AddProduitComponent } from './add-produit/add-produit.component';
 import { AuthService } from './services/auth.service';
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {faCoffee, faUser} from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCoffee, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +24,6 @@ import {faCoffee, faUser} from '@fortawesome/free-solid-svg-icons';
     ProduitsComponent,
     AddProduitComponent,
     FontAwesomeModule,
-
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -33,18 +31,17 @@ import {faCoffee, faUser} from '@fortawesome/free-solid-svg-icons';
 export class AppComponent implements OnInit {
   isMenuCollapsed = true;
   constructor(public authService: AuthService, private router: Router) {}
-facoff=faUser;
-  ngOnInit(): void {
-    let isLoggedIn: string ;
-    let loggedUser: string;
-    // @ts-ignore
-    isLoggedIn = localStorage.getItem('isLoggedIn');
-    // @ts-ignore
-    loggedUser = localStorage.getItem('loggedUser');
-    if (isLoggedIn != 'true' || !loggedUser) {
+  facoff = faUser;
+  ngOnInit() {
+    this.authService.loadToken();
+    if (
+      this.authService.getToken() == null ||
+      this.authService.isTokenExpired()
+    )
       this.router.navigate(['/login']);
-    } else {
-      this.authService.setLoggedUserFromLocalStorage(loggedUser);
-    }
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 }

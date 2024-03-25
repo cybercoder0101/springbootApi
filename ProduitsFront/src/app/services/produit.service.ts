@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiURL } from '../config';
 import { CategorieWrapper } from '../model/categorieWrapper.model';
+import { AuthService } from './auth.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -17,44 +18,61 @@ export class ProduitService {
   produits!: Produit[];
   apiURLCat: string = 'http://localhost:8080/produits/cat';
 
-  /* categories: Categorie[]; */
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   listeproduits(): Observable<Produit[]> {
-    const url =apiURL+"/all";
-    return this.http.get<Produit[]>(url);
-  }
-  ajouterProduit(prod: Produit) {
-    const url= apiURL+"/addprod"
-    return this.http.post<Produit>(url, prod, httpOptions);
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpheaders = new HttpHeaders({ Authorization: jwt });
+    const url = apiURL + '/all';
+    return this.http.get<Produit[]>(url, { headers: httpheaders });
   }
 
+  ajouterProduit(prod: Produit): Observable<Produit> {
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+    return this.http.post<Produit>(apiURL + '/addprod', prod, {
+      headers: httpHeaders,
+    });
+  }
   supprimerProduit(id: number) {
-    const url = `${apiURL}+"/delprod"+/${id}`;
-    return this.http.delete(url, httpOptions);
+    const url = `${apiURL}/delprod/${id}`;
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+    return this.http.delete(url, { headers: httpHeaders });
   }
-
-  consulterProduit(id: number) {
-    const url = `${apiURL}+"getById"+/${id}`;
-    return this.http.get<Produit>(url);
+  consulterProduit(id: number): Observable<Produit> {
+    const url = `${apiURL}/getById/${id}`;
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+    return this.http.get<Produit>(url, { headers: httpHeaders });
   }
-
-  updateProduit(p: Produit): Observable<Produit> {
-    const url=apiURL+"/updateprod";
-    return this.http.put<Produit>(url, p, httpOptions);
+  updateProduit(prod: Produit): Observable<Produit> {
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+    return this.http.put<Produit>(apiURL + '/updateprod', prod, {
+      headers: httpHeaders,
+    });
   }
-
   trierProduits() {
     this.produits = this.produits.sort((n1, n2) => n1.idProduit - n2.idProduit);
   }
 
   listerCategories(): Observable<CategorieWrapper> {
-    return this.http.get<CategorieWrapper>(this.apiURLCat);
+    let jwt = this.authService.getToken();
+    jwt = 'Bearer ' + jwt;
+    let httpHeaders = new HttpHeaders({ Authorization: jwt });
+    return this.http.get<CategorieWrapper>(this.apiURLCat, {
+      headers: httpHeaders,
+    });
   }
 
   consulterCategorie(id: number) {
-    const url = `${apiURL}+"/cat/"+${id}`;
+    const url = `${apiURL}/cat/${id}`;
     return this.http.get<Categorie>(url);
   }
 
@@ -63,7 +81,7 @@ export class ProduitService {
     return this.http.get<Produit[]>(url);
   }
   rechercheParNom(nom: string): Observable<Produit[]> {
-    const url = `${apiURL}/prodByNom/${nom}`;
+    const url = `${apiURL}/prodsByNom/${nom}`;
     return this.http.get<Produit[]>(url);
   }
 

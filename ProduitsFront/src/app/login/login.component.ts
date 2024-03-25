@@ -15,16 +15,20 @@ import { produitGuard } from '../guards/produit.guard';
 })
 export class LoginComponent implements OnInit {
   user = new User();
-  erreur = 0;
+  erreur: number = 0;
   constructor(private authService: AuthService, private router: Router) {}
   onLoggedin() {
-    console.log(this.user);
-    let isValiduser: Boolean = this.authService.SignIn(this.user);
-    if (isValiduser) {
-      this.router.navigate(['/']);
-    } else {
-      this.erreur = 1;
-    }
+    this.authService.login(this.user).subscribe({
+      next: (data) => {
+        let jwtToken = data.headers.get('Authorization')!;
+        this.authService.saveToken(jwtToken);
+        this.router.navigate(['/']);
+      },
+      error: (err: any) => {
+        this.erreur = 1;
+      },
+    });
   }
+
   ngOnInit(): void {}
 }

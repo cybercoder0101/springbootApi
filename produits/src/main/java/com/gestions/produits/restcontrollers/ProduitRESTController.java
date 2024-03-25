@@ -26,7 +26,6 @@ public class ProduitRESTController {
     }
 
 
-    //@RequestMapping(method = RequestMethod.POST)
     @PostMapping("/addprod")
     public ProduitDTO createProduit(@RequestBody ProduitDTO produitDTO){
         return produitService.saveProduit(produitDTO);
