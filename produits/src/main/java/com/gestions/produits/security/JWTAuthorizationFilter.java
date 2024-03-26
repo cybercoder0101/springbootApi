@@ -53,13 +53,15 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
                 }
             }
-//        } else {
+//        }
+        else {
 //            // Pas de jeton JWT fourni dans l'en-tête Authorization
-//            filterChain.doFilter(request, response);
+            System.out.println("mauvaise route");
+           filterChain.doFilter(request, response);}
 
     }
 
-    private boolean checkAuthorization(HttpServletRequest request, List<String> roles) {
+    private boolean checkAuthorization(@org.jetbrains.annotations.NotNull HttpServletRequest request, List<String> roles) {
         // Implementez la logique de vérification des autorisations ici
         // Par exemple, vérifiez si les rôles incluent "ADMIN" pour accéder à certaines ressources
         // Utilisez les informations de la requête (URL, méthode HTTP, etc.) pour déterminer la ressource demandée
@@ -75,9 +77,11 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         else if (requestURI.contains("/produits/api/delprod") && roles.contains("ADMIN")) {
             return true;  // L'administrateur peut supprimer un produit
         }
-        else if ((requestURI.contains("/produits/api/all") || requestURI.contains("/produits/api/getById")) && (roles.contains("ADMIN") || roles.contains("USER"))) {
+        else if ((requestURI.contains("/produits/api/all") || requestURI.contains("/produits/api/getById"))||(requestURI.contains("/produits/cat") ||requestURI.contains("/produits/api/prodByNom/")||requestURI.contains("/produits/api/prodscat/")) && (roles.contains("ADMIN") || roles.contains("USER"))) {
             return true;  // Tous les utilisateurs (ADMIN ou USER) peuvent accéder à la liste des produits ou à un produit spécifique
         }
+
+
         else {
             return false;  // Par défaut, l'accès est refusé
         }

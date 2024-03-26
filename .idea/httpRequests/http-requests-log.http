@@ -1,3 +1,62 @@
+POST http://localhost:8080/produits/api/addprod
+Content-Type: application/json
+Content-Length: 117
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Cookie: JSESSIONID=2DB568B33F8715C936F3762B23B6E74E
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "idProduit": 0,
+  "nomProduit": "",
+  "prixProduit": 0,
+  "dateCreation": "",
+  "categorie": {},
+  "nomCat": ""
+}
+
+###
+
+GET http://localhost:8080/produits/api/all
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Cookie: JSESSIONID=2DB568B33F8715C936F3762B23B6E74E
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
+GET http://localhost:8080/produits/api/cat/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Cookie: JSESSIONID=2DB568B33F8715C936F3762B23B6E74E
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
+GET http://localhost:8080/produits/api/cat/4
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Cookie: JSESSIONID=2DB568B33F8715C936F3762B23B6E74E
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
+GET http://localhost:8080/produits/api/cat
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Cookie: JSESSIONID=2DB568B33F8715C936F3762B23B6E74E
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
+GET http://localhost:8080/produits/api/cat
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Cookie: JSESSIONID=2DB568B33F8715C936F3762B23B6E74E
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
 POST http://localhost:8080/produits/api
 Content-Length: 0
 Connection: Keep-Alive
