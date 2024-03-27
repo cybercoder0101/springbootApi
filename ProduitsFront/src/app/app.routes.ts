@@ -1,6 +1,7 @@
 import { Routes, CanActivateFn } from '@angular/router';
 import { produitGuard } from './guards/produit.guard';
 
+
 export const routes: Routes = [
   {
     path: 'produits',
@@ -58,6 +59,11 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () =>
       import('./login/login.component').then((module) => module.LoginComponent),
+  },
+  {
+    path:'register',
+    loadComponent:()=>
+      import('./register/register.component').then((module)=>module.RegisterComponent)
   },
 
   {

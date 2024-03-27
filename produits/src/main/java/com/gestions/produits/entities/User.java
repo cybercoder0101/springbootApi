@@ -18,6 +18,7 @@ public class User {
     private Long user_id;
     @Column(unique = true)
     private String username;
+    private String email;
     private String password;
     private Boolean enabled;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

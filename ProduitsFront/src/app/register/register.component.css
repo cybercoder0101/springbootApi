@@ -39,4 +39,7 @@ a:hover{
   background: #6aa5d9;
   border: 2px solid #57a8da;
 }
+input:hover{
+  border-color: #6aa5d9;
+}
 

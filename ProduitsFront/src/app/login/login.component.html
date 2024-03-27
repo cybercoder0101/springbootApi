@@ -1,42 +1,48 @@
-<div class="container col-xs-10 col-md-8">
-  <div class="card text-center">
-    <div class="card-header">Connexion</div>
-    <div class="card-body">
-      <form action="">
-        <div class="form-group">
-          <label>Nom d'utilisateur:</label>
-          <input
-            type="text"
-            name="username"
-            [(ngModel)]="user.username"
-            class="form-control"
-          />
-        </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <h2 class="card-title text-center">Connexion</h2>
+        <div class="card-body py-md-4">
+          <form class="form-group">
 
-        <div class="form-group">
-          <label>Mot de passe</label>
-          <input
-            type="password"
-            name="password"
-            [(ngModel)]="user.password"
-            c
-            class="form-control"
-          />
-        </div>
+            <div class="form-group">
+              <input type="text"
+                     name="username"
+                     placeholder="nom d'utilisateur"
+                     [(ngModel)]="user.username"
+                     class="form-control">
+            </div>
 
-        <button
-          type="button"
-          (click)="onLoggedin()"
-          class="btn btn-primary btn-block mt-4"
-        >
-          Se connecter
-        </button>
-      </form>
+            <div class="form-group">
+              <input type="password"
+                     name="password"
+                     placeholder="mot de passe"
+                     [(ngModel)]="user.password"
+                     class="form-control">
+            </div>
+
+            <div class="d-flex flex-row align-items-center justify-content-center">
+              <button type="button"
+                      (click)="onLoggedin()"
+                      class="btn btn-primary btn-block mt-4">
+                Se connecter
+              </button>
+            </div>
+          </form>
+        </div>
+        @if (erreur==1){
+
+
+        <div class="alert alert-danger" role="alert">
+          Nom d'utilisateur ou mot de passe erroné !
+        </div>
+        }
+        <div style="text-align: center;">
+          <p> Vous n'avez pas de compte
+            <a type="button" routerLink="/register">S'incrire ?</a></p>
+        </div>
+      </div>
     </div>
-    @if (erreur==1) {
-    <div class="alert alert-danger" role="alert">
-      Nom d'utilisateur ou mot de passe erroné !
-    </div>
-    }
   </div>
 </div>
