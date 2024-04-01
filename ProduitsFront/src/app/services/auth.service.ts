@@ -1,4 +1,4 @@
-import { apiURL } from './../config';
+import {apiURL, globalUrl} from './../config';
 import { Injectable } from '@angular/core';
 import { User } from '../model/user.model';
 import { Router } from '@angular/router';
@@ -9,10 +9,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root',
 })
 export class AuthService {
-  /*  users: User[] = [
-    { username: 'admin', password: '123', roles: ['ADMIN'] },
-    { username: 'c18', password: '123', roles: ['USER'] },
-  ]; */
+
 
   token!: string;
   public loggedUser!: string;
@@ -30,6 +27,11 @@ export class AuthService {
     this.isLoggedIn = false;
     localStorage.removeItem('jwt');
     this.router.navigate(['/login']);
+  }
+
+  registerUser(user:User){
+
+  return this.http.post<User>(globalUrl+"/register", user,{observe:'response'});
   }
 
   /*  SignIn(user: User): Boolean {

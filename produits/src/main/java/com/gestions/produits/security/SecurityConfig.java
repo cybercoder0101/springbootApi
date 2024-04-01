@@ -49,8 +49,8 @@ public class SecurityConfig {
 
 
                 .authorizeHttpRequests( requests -> requests
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/all").hasAuthority("ADMIN")
+                        .requestMatchers("/login","/register/**").permitAll()
+                        .requestMatchers("/produits/all").hasAuthority("ADMIN")
 
                         .requestMatchers("/api/v1/auth/**", "/v3/api-docs/**", "produits/swagger-ui/**")
                         .permitAll()
@@ -75,7 +75,7 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.DELETE,"/produits/api/delprod/**")
                         .hasAuthority("ADMIN")
-//
+
 
 
                         .anyRequest().authenticated())
@@ -83,7 +83,8 @@ public class SecurityConfig {
 
                 .addFilterBefore(new JWTAuthenticationFilter(authMgr),
                         UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(new JWTAuthorizationFilter(), BasicAuthenticationFilter.class)
+              .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+
              ;
 
 

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {User} from "../model/user.model";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,8 @@ export class RegisterComponent implements OnInit{
   public user=new User();
   confirmPassword?:string;
   myForm!:FormGroup
-  constructor(private formBuilder:FormBuilder) {
+  err:any;
+  constructor(private formBuilder:FormBuilder, private authService:AuthService) {
   }
   ngOnInit() {
     this.myForm=this.formBuilder.group({
@@ -29,6 +31,17 @@ export class RegisterComponent implements OnInit{
 
   onRegister(){
     console.log(this.user)
+    this.authService.registerUser(this.user).subscribe(
+      {next:(res)=> {
+          alert("valider votre email");
+        },
+        error:(err:any)=>{
+        if (err.status ==400){
+          this.err=err.error.message
+        }
+        }
+      }
+    )
   }
 
 }

@@ -5,10 +5,7 @@ import com.gestions.produits.repositiries.UserRepository;
 import com.gestions.produits.service.UserService;
 import com.gestions.produits.service.register.RegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,7 +24,7 @@ public class UserRestController {
     }
 
     @PostMapping("/register")
-    public User register(RegistrationRequest request){
+    public User register(@RequestBody RegistrationRequest request){
      return userService.registerUser(request);
     }
 
